@@ -27,7 +27,7 @@
 
             // console.log(data);
             let results=data.results
-            console.log(results);
+            // console.log(results);
 
             let randomUsers= [...results].sort(()=>Math.random()-0.5).slice(0,1);
             
@@ -38,11 +38,11 @@
               randomUsers.forEach((element) => {
        output +=`   <div class="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs">
     <a href="#">
-        <img class="rounded-base" src="${element.thumbnail}" alt="" />
+        <img class="rounded-base" src="${element.picture.thumbnail}" alt="" />
     </a>
     
-        <h5 class="mt-6 mb-2 text-1xl font-semibold tracking-tight text-heading"> FullName : ${element.first}${element.last }</h5>
-                <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading">Location : ${element.location}</h5>
+        <h5 class="mt-6 mb-2 text-1xl font-semibold tracking-tight text-heading"> FullName : ${element.name.first}${element.name.last }</h5>
+                <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading">Location : ${element.location.street.name}</h5>
         <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading">Email : ${element.email}</h5>
         <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading"> PhoneNumber  : ${element.phone}</h5>
 
