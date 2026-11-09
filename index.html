@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Generator</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">User Generator</h1>
+        <button id="randomBtn" class="btn btn-primary mb-4">
+    Show Random Users
+</button>
+        <div class="row g-4" id="result">Loading...</div>
+    </div>
+</body>
+<script>
+    let Api ="https://randomuser.me/api/"
+
+    async function getUsers(){
+         try{
+            // fetch Api 
+            let response = await fetch(Api)
+            let data = await response.json();
+
+            // console.log(data);
+            let results=data.results
+            console.log(results);
+
+            let randomUsers= [...results].sort(()=>Math.random()-0.5).slice(0,1);
+            
+
+            let result=document.getElementById("result")
+            let output="";
+
+              randomUsers.forEach((element) => {
+       output +=`   <div class="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs">
+    <a href="#">
+        <img class="rounded-base" src="${element.thumbnail}" alt="" />
+    </a>
+    
+        <h5 class="mt-6 mb-2 text-1xl font-semibold tracking-tight text-heading"> FullName : ${element.first}${element.last }</h5>
+                <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading">Location : ${element.location}</h5>
+        <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading">Email : ${element.email}</h5>
+        <h5 class="mt-6 mb-2 text-xl font-semibold tracking-tight text-heading"> PhoneNumber  : ${element.phone}</h5>
+
+    
+   
+</div>`
+    
+});
+
+result.innerHTML=output;
+
+         }
+         catch(error){
+            console.log(error);
+            
+         }
+    }
+
+   let randomBtn = document.getElementById("randomBtn");
+
+randomBtn.addEventListener("click", getUsers);
+</script>
+</html>
+
+
+
+
